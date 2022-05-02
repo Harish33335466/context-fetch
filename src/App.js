@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import ComponentA from "./ComponentA";
+import ComponentB from './ComponentB';
+import FetchData from "./FetchData";
 
+const blogInfo = {
+  React: {
+    post: "Learn useContext Hooks",
+    website: "w3schools.com",
+  },
+  GraphQL: {
+    post: "Learn GraphQL Mutations",
+    website: "w3schools.com",
+  },
+};
+
+export const blogInfoContext = React.createContext(blogInfo);
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <blogInfoContext.Provider value={blogInfo}>
+        <h1>React context </h1>
+        <ComponentA></ComponentA>
+        <ComponentB></ComponentB>
+      </blogInfoContext.Provider>
+      <FetchData></FetchData>
     </div>
   );
 }
